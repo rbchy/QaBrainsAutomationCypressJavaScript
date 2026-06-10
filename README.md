@@ -1,4 +1,4 @@
-# QaBrains Cypress — BDD Cucumber Test Framework
+# QaBrainsAutomaion JavaScript Cypress — BDD Cucumber Test Framework
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
 ![Cypress](https://img.shields.io/badge/Cypress-13.17.0-04C38E?logo=cypress&logoColor=white)
