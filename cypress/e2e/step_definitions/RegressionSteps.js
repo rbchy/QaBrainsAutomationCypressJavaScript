@@ -22,10 +22,15 @@ Given('User is logged in to the e-commerce site', () => {
 });
 
 When('User adds {int} products to cart', (count) => {
+  // count through jQuery so that zero "Remove from cart" buttons is a valid starting point
+  const removeCount = ($body) => $body.find('button').filter((_, el) => REMOVE.test(el.textContent)).length;
   for (let i = 0; i < count; i += 1) {
-    cartButtons(REMOVE).its('length').then((before) => {
+    cy.get('body').then(($body) => {
+      const before = removeCount($body);
       cartButtons(ADD).first().scrollIntoView().click();
-      cartButtons(REMOVE).should('have.length', before + 1);
+      cy.get('body').should(($b) => {
+        expect(removeCount($b), 'products in the cart').to.equal(before + 1);
+      });
     });
   }
 });
