@@ -1,35 +1,62 @@
 // ============================================================
-// RegressionSteps.js
-// Equivalent to: stepdefinitions/RegressionSteps.java
+// RegressionSteps.js — e-commerce demo (practice.qabrains.com/ecommerce)
+// Every product card has one button that toggles between
+// "Add to cart" and "Remove from cart".
 // ============================================================
 
-import { When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 
-let expectedQuantity = 0;
-let actualQuantity   = 0;
+const ADD = /^\s*add to cart\s*$/i;
+const REMOVE = /^\s*remove from cart\s*$/i;
 
-When('User adds multiple products to cart', () => {
-  cy.log('Multiple products added to cart');
-  expectedQuantity = 2;
-  actualQuantity   = 2; // Replace with real CartPage.getCartCount() when available
+const cartButtons = (re) => cy.get('button').filter((_, el) => re.test(el.textContent));
+
+Given('User is logged in to the e-commerce site', () => {
+  cy.fixture('config').then((cfg) => {
+    cy.visit('/ecommerce/login');
+    cy.get('#email').clear().type(cfg.shop_email);
+    cy.get('#password').clear().type(cfg.shop_password, { log: false });
+    cy.get('button[type="submit"]').first().click();
+  });
+  cy.contains('button', ADD, { timeout: 20000 }).should('be.visible');
 });
 
-When('User updates product quantity', () => {
-  cy.log('Product quantity updated');
-  actualQuantity = expectedQuantity; // Replace with real CartPage.getProductQuantity()
+When('User adds {int} products to cart', (count) => {
+  for (let i = 0; i < count; i += 1) {
+    cartButtons(REMOVE).its('length').then((before) => {
+      cartButtons(ADD).first().scrollIntoView().click();
+      cartButtons(REMOVE).should('have.length', before + 1);
+    });
+  }
 });
 
-When('User searches for invalid item', () => {
-  cy.log('Invalid item searched');
+Then('{int} products should be in the cart', (count) => {
+  cartButtons(REMOVE).should('have.length', count);
 });
 
-Then('No result should be displayed', () => {
-  cy.log('No search result displayed');
-  // Placeholder — replace with real SearchPage assertion
-  expect(true).to.be.true;
+When('User opens the details of the first product', () => {
+  cy.get('a[href*="/ecommerce/product-details"]').first().invoke('attr', 'href').then((href) => {
+    cy.visit(href);
+  });
+  cy.url().should('include', 'product-details?id=');
 });
 
-Then('Quantity should be updated', () => {
-  cy.log(`Verifying quantity: expected=${expectedQuantity}, actual=${actualQuantity}`);
-  expect(actualQuantity).to.equal(expectedQuantity);
+Then('The product details page should show its name and price', () => {
+  cy.contains(/\$\d+\.\d{2}/, { timeout: 15000 }).should('be.visible');
+  cy.contains(/Sample/).should('be.visible');
+});
+
+Then('Every product card should show a name, a price and an {string} button', (buttonText) => {
+  cy.get('a[href*="/ecommerce/product-details"]').then(($links) => {
+    const products = new Set([...$links].map((a) => a.getAttribute('href')));
+    cartButtons(ADD).should('have.length', products.size);
+    cartButtons(ADD).each(($btn) => {
+      // the card is the closest ancestor that also holds a product link
+      const card = $btn.closest(':has(a[href*="product-details"])');
+      const text = card.text();
+      expect(text, 'price on card').to.match(/\$\d+\.\d{2}/);
+      expect(text, 'product name on card').to.contain('Name');
+      expect(text, 'button on card').to.contain(buttonText);
+    });
+  });
 });

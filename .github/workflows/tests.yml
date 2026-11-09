@@ -1,0 +1,36 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cypress:
+    name: Cypress + Cucumber (headless Chrome)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run all feature files
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+      - name: Build the multiple-cucumber-html report
+        if: always()
+        run: node reporter.js || true
+      - name: Upload reports and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-reports
+          path: |
+            cypress/reports/
+            cypress/screenshots/
+          if-no-files-found: ignore
