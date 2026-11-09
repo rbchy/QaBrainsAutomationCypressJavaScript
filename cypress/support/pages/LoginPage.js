@@ -50,39 +50,13 @@ class LoginPage {
 
   // Assertions
   verifyLoginSuccessful() {
-    // URL should leave the login page after a successful login
-    cy.url().should('not.include', 'login');
+    // The practice site shows a success banner after a valid login
+    cy.get('#success-msg', { timeout: 15000 }).should('be.visible').invoke('text').should('not.be.empty');
   }
 
   verifyErrorDisplayed() {
-    // Check for an error/danger alert near the login form — avoid broad class matches
-    // that could match navigation elements (e.g. alert-* in Bootstrap nav)
-    cy.get('body').should(($body) => {
-      const url = window.location.href;
-
-      // Still on login page = failure indicator
-      const stillOnLogin = url.includes('login') || url.includes('sign-in');
-
-      // OR an explicit error element is visible
-      const errorEl = $body.find(
-        ".alert-danger, .error-message, .login-error, " +
-        "[class*='error']:not(script):not(style), " +
-        "form .alert"
-      ).filter(':visible');
-
-      // OR inline error text in the page
-      const bodyText     = $body.text().toLowerCase();
-      const hasErrorText = bodyText.includes('invalid') ||
-                           bodyText.includes('incorrect') ||
-                           bodyText.includes('wrong') ||
-                           bodyText.includes('failed') ||
-                           bodyText.includes('error');
-
-      expect(
-        stillOnLogin || errorEl.length > 0 || hasErrorText,
-        'Expected an error indicator (still on login page, or error element visible, or error text)'
-      ).to.be.true;
-    });
+    cy.contains('Your email and password both are invalid', { timeout: 15000 }).should('be.visible');
+    cy.get('#success-msg').should('not.exist');
   }
 }
 

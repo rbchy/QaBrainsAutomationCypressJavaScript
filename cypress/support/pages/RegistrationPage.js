@@ -60,37 +60,14 @@ class RegistrationPage {
 
   // Assertions
   verifyRegistrationSuccessful() {
-    // Give the page time to show success state
-    cy.get('body').then(($body) => {
-      const text = $body.text().toLowerCase();
-      const successKeywords = [
-        'successfully', 'registered', 'welcome', 'thank you',
-        'account created', 'success', 'confirm',
-      ];
-      const found = successKeywords.some((kw) => text.includes(kw));
-
-      if (found) {
-        cy.log('✅ Found success keyword in page body');
-        // Soft pass — keyword confirms success state
-      } else {
-        // If no keyword, assert we were redirected away from /registration
-        cy.url().should('not.include', 'registration');
-      }
-    });
+    cy.contains(/successfully/i, { timeout: 15000 }).should('be.visible');
   }
 
   verifyEmailValidationError() {
-    // HTML5 native validation OR a custom error element
-    cy.get('body').then(($body) => {
-      const emailInput = $body.find('#email')[0];
-      const hasNativeValidation = emailInput && !emailInput.validity.valid;
-      if (hasNativeValidation) {
-        cy.log('✅ HTML5 email validation triggered');
-      } else {
-        cy.get(
-          '#email + span, #email ~ span, .field-error, [class*="error"], .alert-danger'
-        ).should('exist');
-      }
+    // The browser blocks the submit and reports why on the field itself
+    cy.get('#email').then(($email) => {
+      expect($email[0].validity.valid, 'e-mail field is valid').to.be.false;
+      expect($email[0].validationMessage, 'browser validation message').to.contain('@');
     });
   }
 }

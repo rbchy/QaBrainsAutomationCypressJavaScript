@@ -26,6 +26,6 @@ Then('User should see success message {string}', (_expected) => {
   forgotPasswordPage.verifySuccessMessage();
 });
 
-Then('User should see error message {string}', (_expected) => {
-  forgotPasswordPage.verifyErrorMessage();
+Then('User should see error message {string}', (expected) => {
+  forgotPasswordPage.verifyErrorMessage(expected);
 });

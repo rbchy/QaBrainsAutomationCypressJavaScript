@@ -68,26 +68,10 @@ class LogoutPage {
 
   // ── Assertion: user is now logged out ────────────────────────
   verifyLoggedOut() {
-    // After logout, the site should show a login form or a login link.
-    // We check both — whichever is true confirms logout.
-    cy.get('body').should(($body) => {
-      const url        = window.location.href.toLowerCase();
-      const bodyText   = $body.text().toLowerCase();
-      const hasLoginInUrl   = url.includes('login') || url.includes('signin');
-      const hasLoginForm    = $body.find("input[type='password']").length > 0;
-      const hasLoginLink    = $body.find(
-        "a[href*='login'], a:contains('Login'), a:contains('Sign In'), " +
-        "button:contains('Login'), button:contains('Sign In')"
-      ).filter(':visible').length > 0;
-      const hasLogoutText   = bodyText.includes('logout') ||
-                              bodyText.includes('signed out') ||
-                              bodyText.includes('logged out');
-
-      expect(
-        hasLoginInUrl || hasLoginForm || hasLoginLink || hasLogoutText,
-        'Expected page to indicate user is logged out'
-      ).to.be.true;
-    });
+    // Logged in = ?logged=true in the URL; after logout the login form is back
+    cy.url({ timeout: 15000 }).should('not.include', 'logged=true');
+    cy.contains('form button[type="submit"]', 'Login').should('be.visible');
+    cy.get('#success-msg').should('not.exist');
   }
 }
 
