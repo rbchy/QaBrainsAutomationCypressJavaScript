@@ -1,331 +1,256 @@
-# QaBrainsAutomaion JavaScript Cypress — BDD Cucumber Test Framework
+<div align="center">
 
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
-![Cypress](https://img.shields.io/badge/Cypress-13.17.0-04C38E?logo=cypress&logoColor=white)
-![Cucumber](https://img.shields.io/badge/Cucumber-BDD-brightgreen?logo=cucumber)
-![Node](https://img.shields.io/badge/Node.js-v26-339933?logo=node.js)
-![License](https://img.shields.io/badge/License-Educational-lightgrey)
+# 🌲 QA Brains Automation — Cypress + Cucumber
 
-**Author:** Ranajit Baran Chowdhury — QA Automation Engineer  
-**Email:** chyranajit@gmail.com  
-**GitHub:** [@ranajitchowdhury](https://github.com/ranajitchowdhury)
+### JavaScript BDD suite for the QA Brains practice site — login, registration, password reset, e-commerce cart, navigation
 
-A production-grade end-to-end test automation framework for the **QaBrains e-commerce application** using **Behavior-Driven Development (BDD)** principles. Built with Cypress 13 + Cucumber, following the Page Object Model pattern with full JSON and HTML reporting.
+[![Typing SVG](https://readme-typing-svg.demolab.com/?font=Fira+Code&size=18&pause=1500&color=FFC107&center=true&vCenter=true&width=900&repeat=true&lines=Cypress+13+%C2%B7+Cucumber+%C2%B7+JavaScript+%C2%B7+esbuild;Login+%C2%B7+Registration+%C2%B7+Forgot+Password+%C2%B7+Cart+%C2%B7+Navigation;15+%2F+15+scenarios+in+90+s+on+GitHub+Actions)](https://git.io/typing-svg)
 
-🌐 **Live Application:** [practice.qabrains.com/ecommerce](https://practice.qabrains.com/ecommerce)
+<!-- ============ STATUS BAR ============ -->
+[![Tests](https://github.com/rbchy/QaBrainsAutomationCypressJavaScript/actions/workflows/tests.yml/badge.svg)](https://github.com/rbchy/QaBrainsAutomationCypressJavaScript/actions/workflows/tests.yml)
+![Pass Rate](https://img.shields.io/badge/Pass%20Rate-100%25%20(15%2F15)-22c55e?style=for-the-badge&logo=checkmarx&logoColor=white)
+![Target](https://img.shields.io/badge/Target-practice.qabrains.com-1e3a8a?style=for-the-badge&logo=googlechrome&logoColor=white)
+
+![Cypress](https://img.shields.io/badge/Cypress-13.17-17202C?style=for-the-badge&logo=cypress&logoColor=white)
+![Cucumber](https://img.shields.io/badge/Cucumber-preprocessor%2020-23D96C?style=for-the-badge&logo=cucumber&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-20-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![esbuild](https://img.shields.io/badge/esbuild-0.20-FFCF00?style=for-the-badge&logo=esbuild&logoColor=black)
+
+![Last Commit](https://img.shields.io/github/last-commit/rbchy/QaBrainsAutomationCypressJavaScript?style=flat-square&color=0d9488&label=Last%20commit)
+![Repo Size](https://img.shields.io/github/repo-size/rbchy/QaBrainsAutomationCypressJavaScript?style=flat-square&color=155e75&label=Repo%20size)
+
+</div>
 
 ---
 
-## 🛠️ Technology Stack
+## 📌 At a Glance
 
-| Component | Technology | Purpose |
-|-----------|-----------|---------|
-| **Language** | JavaScript (ES6+) | Core programming language |
-| **Test Tool** | Cypress 13.17.0 | Browser automation & assertions |
-| **BDD Framework** | Cucumber (`@badeball/cypress-cucumber-preprocessor`) | Gherkin-based feature files |
-| **Bundler** | esbuild (`@bahmutov/cypress-esbuild-preprocessor`) | Fast spec compilation |
-| **Reporter** | `multiple-cucumber-html-reporter` | Rich HTML test dashboard |
-| **Runtime** | Node.js v26 | JavaScript runtime |
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**🙋 What this is**
+
+The **Cypress (JavaScript)** edition of the QA Brains practice-site suite — the same Gherkin scenarios as the [Selenium](https://github.com/rbchy/QaBrainsAutomationJavaSelenium) and [Playwright](https://github.com/rbchy/QaBrainsAutomationJavaPlaywright) editions, run by **`@badeball/cypress-cucumber-preprocessor`** with esbuild bundling. It covers authentication, the **e-commerce demo** (shop login, add / remove to cart, product details, product cards) and the sidebar demo modules.
+
+Every push runs the suite in **GitHub Actions** with headless Chrome.
+
+> *A check that cannot fail is not a check — every assertion here can.*
+
+</td>
+<td width="50%" valign="top">
+
+**📍 Quick facts**
+
+| | |
+|---|---|
+| 🧪 **Scenarios** | 15 in 7 feature files |
+| ✅ **CI** | 15 / 15 · headless Chrome · ≈ 90 s |
+| 🧱 **Pattern** | Page Objects in `cypress/support/pages` |
+| 📊 **Reports** | Cucumber HTML · JSON · multiple-cucumber-html |
+| 📸 **On failure** | Cypress screenshots |
+
+</td>
+</tr>
+</table>
+
+---
+
+## ✅ Latest Results
+
+| Feature file | Scenarios | Result |
+|---|---:|---|
+| 🛒 `CartCheckout.feature` | 2 | ![passed](https://img.shields.io/badge/-2%20passed-22c55e?style=flat-square) |
+| 🔑 `ForgotPassword.feature` | 2 | ![passed](https://img.shields.io/badge/-2%20passed-22c55e?style=flat-square) |
+| 🔐 `Login.feature` | 2 | ![passed](https://img.shields.io/badge/-2%20passed-22c55e?style=flat-square) |
+| 🚪 `Logout.feature` | 1 | ![passed](https://img.shields.io/badge/-1%20passed-22c55e?style=flat-square) |
+| 📝 `Registration.feature` | 2 | ![passed](https://img.shields.io/badge/-2%20passed-22c55e?style=flat-square) |
+| 🔄 `RegressionTests.feature` | 3 | ![passed](https://img.shields.io/badge/-3%20passed-22c55e?style=flat-square) |
+| 💨 `SmokeTests.feature` | 3 | ![passed](https://img.shields.io/badge/-3%20passed-22c55e?style=flat-square) |
+| **Total** | **15** | **100 % · 1 m 27 s** |
+
+<sub>GitHub Actions, Ubuntu, Node 20, Cypress 13.17, headless Chrome ([workflow](.github/workflows/tests.yml)). The earlier local report ([QaBrainsCypressCucumberReport.pdf](QaBrainsCypressCucumberReport.pdf)) also showed 100 %, but several of its checks could not fail — see the maintenance log.</sub>
+
+---
+
+## 🎯 Test Coverage
+
+<details open>
+<summary><strong>🔐 Authentication</strong></summary>
+
+<br>
+
+| Feature | What is asserted |
+|---|---|
+| Login | Valid login shows the success banner · invalid login shows *"Your email and password both are invalid!"* and no banner |
+| Logout | The `?logged=true` flag is gone and the Login button is back |
+| Registration | A success message appears · an e-mail without `@` is rejected by the browser (`validity.valid === false`) |
+| Forgot Password | Registered e-mail → `?forgot=true` and a success banner · malformed e-mail → the browser's message contains *"missing an '@'"* |
+
+</details>
+
+<details>
+<summary><strong>🛒 E-commerce demo</strong></summary>
+
+<br>
+
+| Scenario | What is asserted |
+|---|---|
+| Add / remove product | The button toggles to *Remove from cart* and back to *Add to cart* |
+| R-01 Add multiple products | Each click adds exactly one product; 3 added → 3 in the cart |
+| R-02 Product details | Details page shows a `$0.00`-style price and the product name |
+| R-03 Product cards | One *Add to cart* button per product; every card has a name, a price and the button |
+
+</details>
+
+<details>
+<summary><strong>💨 Smoke</strong></summary>
+
+<br>
+
+| Scenario | What is asserted |
+|---|---|
+| S-01 | Home page loads |
+| S-02 | Registration, Forgot Password, Form Submission and Drag and Drop List each open from the sidebar (URL check) |
+| S-03 | The E-Commerce demo site opens from the menu |
+
+</details>
+
+---
+
+## 🏗️ Framework Architecture
+
+```mermaid
+flowchart LR
+  F["Feature files<br/>cypress/e2e/features"] --> P["cypress-cucumber-preprocessor<br/>+ esbuild"]
+  P --> S["Step definitions<br/>cypress/e2e/step_definitions"]
+  S --> PO["Page Objects<br/>cypress/support/pages"]
+  PO --> C["Cypress runner<br/>(retry-ability, auto-wait)"]
+  C --> Q["practice.qabrains.com"]
+  E["support/e2e.js<br/>clear cookies + storage"] -.-> C
+  C --> R["Cucumber JSON / HTML →<br/>multiple-cucumber-html report"]
+```
+
+- **Clean slate per scenario** — `beforeEach` clears cookies and local storage, so a login in one scenario never leaks into the next
+- **Retry-ability instead of sleeps** — assertions like `.should(...)` retry until they pass or time out
+- **Page Objects** — locators and actions for Login, Logout, Registration, Forgot Password, Home and the cart in `cypress/support/pages`
+- **Single-tab navigation** — links that would open a new tab are kept in the current one, which is how Cypress drives a browser
+- **Fixture data** — the site URL and the public practice accounts live in `cypress/fixtures/config.json`
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology | Version |
+|---|---|---|
+| Test runner | Cypress | 13.17.0 |
+| BDD | `@badeball/cypress-cucumber-preprocessor` | 20.1.2 |
+| Bundler | esbuild + `@bahmutov/cypress-esbuild-preprocessor` | 0.20.2 |
+| Reporting | Cucumber HTML / JSON, `multiple-cucumber-html-reporter` | 3.10.0 |
+| Language / runtime | JavaScript · Node.js | 20 |
+| CI | GitHub Actions (`cypress-io/github-action`) | v6 |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-QaBrainsCypress/
-│
+QaBrainsAutomationCypressJavaScript/
+├── .github/workflows/tests.yml          ← headless Chrome on every push
 ├── cypress/
 │   ├── e2e/
-│   │   ├── features/                  ← BDD Gherkin feature files
-│   │   │   ├── CartCheckout.feature
-│   │   │   ├── ForgotPassword.feature
-│   │   │   ├── Login.feature
-│   │   │   ├── Logout.feature
-│   │   │   ├── Registration.feature
-│   │   │   ├── RegressionTests.feature
-│   │   │   └── SmokeTests.feature
-│   │   │
-│   │   └── step_definitions/          ← Cucumber step implementations
-│   │       ├── CartSteps.js
-│   │       ├── CommonSteps.js
-│   │       ├── ForgotPasswordSteps.js
-│   │       ├── LoginSteps.js
-│   │       ├── LogoutSteps.js
-│   │       ├── RegistrationSteps.js
-│   │       ├── RegressionSteps.js
-│   │       └── SmokeSteps.js
-│   │
-│   ├── fixtures/
-│   │   └── config.json                ← Test configuration data
-│   │
-│   ├── reports/                       ← Generated after test run
-│   │   ├── cucumber-json/             ← Per-feature JSON outputs ([hash].json)
-│   │   ├── cucumber-html/             ← Built-in Cucumber HTML report
-│   │   └── html/                      ← Rich HTML dashboard (index.html) ← open this
-│   │
-│   ├── screenshots/                   ← Auto-captured on test failure
-│   │
+│   │   ├── features/                    ← 7 feature files, 15 scenarios
+│   │   └── step_definitions/            ← Common, Login, Logout, Registration,
+│   │                                       ForgotPassword, Cart, Smoke, Regression
+│   ├── fixtures/config.json             ← URL and public practice accounts
 │   └── support/
-│       ├── commands.js                ← Custom Cypress commands
-│       ├── e2e.js                     ← Global support configuration
-│       └── pages/                     ← Page Object Model (POM) classes
-│           ├── CartPage.js
-│           ├── ForgotPasswordPage.js
-│           ├── HomePage.js
-│           ├── LoginPage.js
-│           ├── LogoutPage.js
-│           ├── RegistrationPage.js
-│           └── SearchPage.js
-│
-├── cypress.config.js                  ← Cypress + Cucumber configuration
-├── reporter.js                        ← HTML report generator script
-└── package.json                       ← Dependencies & npm scripts
+│       ├── e2e.js                       ← clean state before every scenario
+│       ├── commands.js
+│       └── pages/                       ← Login, Logout, Registration, ForgotPassword, Cart, Home
+├── cypress.config.js                    ← baseUrl, viewport, preprocessor wiring
+├── reporter.js                          ← multiple-cucumber-html report
+└── package.json
 ```
 
 ---
 
-## 🎯 Test Coverage
+## ⚙️ Getting Started
 
-### 🔐 Authentication — `Login.feature`
-- Login with valid credentials — successful redirect verification
-- Login with invalid credentials — error message assertion
+**Prerequisites:** Node.js 18+ · Google Chrome
 
-### 🚪 Logout — `Logout.feature`
-- Logged-in user can log out — session termination and redirect check
-
-### 📝 Registration — `Registration.feature`
-- Successful user registration with a valid email address
-- Registration failure with an invalid email format
-
-### 🔑 Forgot Password — `ForgotPassword.feature`
-- Registered user can request a password reset — success message verification
-- Unregistered user cannot reset password — error/validation check
-
-### 🛒 Cart & Checkout — `CartCheckout.feature`
-- Add a product to the cart — button state and cart confirmation
-- Remove a product from the cart — state reset and empty cart verification
-
-### 💨 Smoke Tests — `SmokeTests.feature`
-- S-01: Verify Home page loads successfully
-- S-02: Verify navigation links (Catalog, About, Blog)
-- S-03: Verify Wishlist and Refer a Friend functionality
-
-### 🔁 Regression Tests — `RegressionTests.feature`
-- R-01: Add multiple products to the cart
-- R-02: Update product quantity
-- R-03: Search for an invalid item — no results displayed
-
----
-
-## ✨ Framework Features
-
-| Feature | Description |
-|---------|-------------|
-| ✅ BDD with Cucumber | Gherkin syntax for human-readable, stakeholder-friendly scenarios |
-| ✅ Page Object Model | Locators and actions separated per page class for maintainability |
-| ✅ Reusable Step Definitions | Shared steps across feature files to eliminate duplication |
-| ✅ Tag-based Execution | Run only `@smoke` or `@regression` tests independently |
-| ✅ Auto Screenshot on Failure | Cypress captures a screenshot automatically on any test failure |
-| ✅ JSON Reports | Per-feature Cucumber JSON output generated after every run |
-| ✅ HTML Dashboard Report | Rich visual report via `multiple-cucumber-html-reporter` |
-| ✅ esbuild Compilation | Fast spec bundling — no slow Webpack/Browserify overhead |
-| ✅ Cross-scenario State Handling | Robust reset logic guards against test-isolation side effects |
-
----
-
-## 📋 Prerequisites
-
-Ensure the following are installed before running the tests:
-
-- ✅ **Node.js v18+** — [nodejs.org](https://nodejs.org)
-- ✅ **npm** — bundled with Node.js
-- ✅ **Git** — for cloning the repository
-- ✅ **Chrome / Electron** — Cypress uses Electron headless by default
-
----
-
-## ⚙️ Installation & Setup
-
-**1. Clone the repository:**
 ```bash
-git clone https://github.com/ranajitchowdhury/QaBrainsCypress.git
-cd QaBrainsCypress
+git clone https://github.com/rbchy/QaBrainsAutomationCypressJavaScript.git
+cd QaBrainsAutomationCypressJavaScript
+npm ci
+
+npm test                       # all scenarios, headless
+npm run open                   # Cypress interactive runner
+npm run test:smoke             # @smoke only
+npm run test:report            # run, then build the multiple-cucumber-html report
 ```
 
-**2. Install all dependencies:**
-```bash
-npm install
-```
+| Report | Location |
+|---|---|
+| Cucumber HTML | `cypress/reports/cucumber-html/cucumber-report.html` |
+| Cucumber JSON | `cypress/reports/cucumber-json/` |
+| multiple-cucumber-html | built by `node reporter.js` |
+| Failure screenshots | `cypress/screenshots/` |
 
 ---
 
-## ▶️ Running the Tests
+## 🧹 Maintenance Log
 
-### Run all tests (headless)
-```bash
-npm test
-```
-
-### Run all tests + generate HTML report
-```bash
-npm run test:report
-```
-
-### Run in headed (visible browser) mode
-```bash
-npm run test:headed
-```
-
-### Run only Smoke tests
-```bash
-npm run test:smoke
-```
-
-### Run only Regression tests
-```bash
-npm run test:regression
-```
-
-### Open Cypress interactive UI
-```bash
-npm run open
-```
-
-### Generate HTML report from existing JSON (no re-run)
-```bash
-npm run report
-```
+| Change | Why |
+|---|---|
+| Smoke steps now assert the sidebar modules open | They looked for Catalog, Blog, Wish List and Refer a Friend, logged *"not found — skipping"* and passed — none of those pages exist |
+| Regression steps now drive the real cart and product pages | They asserted `expect(true).to.be.true` |
+| *Login successful* checks the success banner | It only required the URL not to contain `login`, which the home page never does |
+| *Error shown* checks the exact invalid-login message | It passed if the word "error" appeared anywhere on the page |
+| *Logged out* checks the `logged=true` flag and the Login button | It passed if any password field existed — the home page always has one |
+| Registration and Forgot Password compare real messages | Success passed on words like "success" anywhere; the error step ignored the expected text |
+| GitHub Actions | Every push is checked |
 
 ---
 
-## 📊 Test Reports
+## 📈 Roadmap
 
-After running `npm run test:report` (or `npm test` followed by `npm run report`), two report types are generated:
-
-### 1. Rich HTML Dashboard
-```
-cypress/reports/html/index.html
-```
-Open this file in any browser. Shows a full visual summary — feature results, scenario pass/fail, execution time, browser/platform metadata, and per-step detail.
-
-### 2. Built-in Cucumber HTML
-```
-cypress/reports/cucumber-html/cucumber-report.html
-```
-
-### 3. Cucumber JSON (raw data)
-```
-cypress/reports/cucumber-json/[hash].json   ← one file per feature
-```
-These JSON files are the source data for the HTML dashboard. They can also be consumed by CI/CD tools (Jenkins, GitHub Actions).
-
-### Screenshot on Failure
-Any failing test automatically captures a screenshot saved to:
-```
-cypress/screenshots/<FeatureName>/<Scenario> (failed).png
-```
+- [x] Every assertion can fail; GitHub Actions
+- [ ] Firefox and Edge in a CI browser matrix
+- [ ] Form Submission and Drag and Drop scenarios
+- [ ] Publish the multiple-cucumber-html report to GitHub Pages
+- [ ] API checks with `cy.request` where the site exposes data
 
 ---
 
-## 🏷️ Tags
+## 🔗 Related Projects
 
-Run specific subsets of tests using Cucumber tags:
+| Project | Stack |
+|---|---|
+| 🧪 [QA Brains — Java + Selenium](https://github.com/rbchy/QaBrainsAutomationJavaSelenium) | Same scenarios on Selenium 4 — CI green |
+| 🎭 [QA Brains — Java + Playwright](https://github.com/rbchy/QaBrainsAutomationJavaPlaywright) | Same scenarios on Playwright — CI green |
+| ☁️ [QA Brains — Sauce Labs](https://github.com/rbchy/QaBrainsSauceLabAPI_Automation) | Same scenarios, local or Sauce Labs cloud |
+| ⭐ [RbcTcsWorld E-Commerce Suite](https://github.com/rbchy/RbcTcsWorld_ECommerceSuite) | Spring Boot · Playwright (TypeScript) · Selenium · CI quality gates |
 
-| Tag | Description |
-|-----|-------------|
-| `@smoke` | Critical path — build verification (fast) |
-| `@regression` | Full regression suite |
-| `@Login` | Login-specific scenarios |
-| `@ForgotPassword` | Password reset scenarios |
-
-**Example — run by tag via CLI:**
-```bash
-npx cypress run --env tags=@smoke
-npx cypress run --env tags=@Login
-```
-
----
-
-## 🏗️ Framework Architecture
-
-```
-Feature Files (.feature — Gherkin)
-            ↓
-Step Definitions (step_definitions/*.js)
-            ↓
-Page Object Model (support/pages/*.js)
-            ↓
-Cypress Commands + WebDriver API
-            ↓
-Electron / Chrome Browser (headless)
-            ↓
-QaBrains Application (practice.qabrains.com)
-```
-
-### Design Patterns Applied
-
-- **Page Object Model (POM)** — each page class owns its selectors and actions; tests stay clean
-- **BDD (Gherkin / Cucumber)** — Given / When / Then for non-technical stakeholder readability
-- **Shared Background Steps** — common setup (launch app, verify URL) defined once and reused
-- **esbuild Preprocessor** — replaces Webpack for near-instant spec compilation
-- **Cross-test State Reset** — `addProductToCart` detects cart state before acting, preventing flaky failures across sequential scenarios
-
----
-
-## 🧩 npm Scripts Reference
-
-| Script | Command | Description |
-|--------|---------|-------------|
-| `test` | `cypress run` | Run all specs headless |
-| `test:headed` | `cypress run --headed` | Run all specs with visible browser |
-| `test:smoke` | `cypress run --env tags=@smoke` | Smoke suite only |
-| `test:regression` | `cypress run --env tags=@regression` | Regression suite only |
-| `open` | `cypress open` | Launch Cypress interactive UI |
-| `report` | `node reporter.js` | Generate HTML from existing JSON |
-| `test:report` | `cypress run && node reporter.js` | Full run + report in one command |
-
----
-
-## 📈 Roadmap & Future Enhancements
-
-- [ ] CI/CD Integration — GitHub Actions pipeline with automatic report publishing
-- [ ] Allure Reports — enhanced reporting with screenshots embedded per step
-- [ ] Parallel Execution — multi-spec parallelism via Cypress Cloud
-- [ ] Cross-Browser Testing — Firefox and Edge support
-- [ ] Data-Driven Testing — JSON / fixture-driven parameterised scenarios
-- [ ] API Testing — `cy.request()` for backend contract validation
-- [ ] Accessibility Testing — `cypress-axe` integration
-- [ ] Docker Support — containerised test execution
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create your branch: `git checkout -b feature/improvement`
-3. Commit your changes: `git commit -m 'Add improvement'`
-4. Push to the branch: `git push origin feature/improvement`
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is provided as-is for **educational and professional QA automation** purposes.
+<sub>All projects: [github.com/rbchy](https://github.com/rbchy)</sub>
 
 ---
 
 ## 👤 Author
 
-**Ranajit Baran Chowdhury**  
-Software Programmer & QA Automation Engineer
+<div align="center">
 
-- 📧 Email: chyranajit@gmail.com
-- 🐙 GitHub: [@ranajitchowdhury](https://github.com/ranajitchowdhury)
+**Ranajit Baran Chowdhury (RB Chowdhury)**
+QA Automation Engineer / SDET · West Norriton, Pennsylvania, USA
 
----
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rbchy/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rbchy)
+[![Website](https://img.shields.io/badge/Website-rbchy.github.io%2Frbchy-0d9488?style=for-the-badge&logo=githubpages&logoColor=white)](https://rbchy.github.io/rbchy/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Website-blueviolet?style=for-the-badge&logo=wix&logoColor=white)](https://rbc6543.wixsite.com/rbc-portfolio)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:chyranajit@gmail.com)
 
-**Version:** 1.0.0  
-**Last Updated:** June 2026
+<sub>QA Brains is a public practice site; only its published practice accounts are used.</sub>
+
+⭐ *If this project helps you, a star on the repo is appreciated.*
+
+</div>
